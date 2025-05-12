@@ -13,11 +13,12 @@ def summarize_user(bio: str, capability: str, cv_text: str) -> str:
 You are an AI assistant summarizing a candidate’s professional profile. Your task is to write a **single, self-contained paragraph** that clearly describes the candidate’s technical skills, relevant experience, and professional strengths.
 
 Do not include:
+- The candidate’s name or any personal identifiers
 - Any introductions like “Here is a summary of the candidate’s profile”
 - Any conclusions like “This highlights their skills” or “This overview is useful for...”
 - Any bullet points, headings, or lists
 
-Only output the clean, concise paragraph — optimized for semantic embedding and role matching.
+Only output a clean, concise paragraph focused **exclusively** on the candidate's **skills**, **technologies used**, **project experience**, and **professional capabilities** — optimized for semantic embedding and role matching.
 
 BIO:
 {bio}
@@ -33,7 +34,7 @@ CV TEXT:
             model="command-r-plus",
             prompt=prompt,
             max_tokens=300,
-            temperature=0.3
+            temperature=0.0
         )
 
         summary = response.generations[0].text.strip()

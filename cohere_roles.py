@@ -10,16 +10,16 @@ co = cohere.Client(COHERE_API_KEY)
 def extract_roles(rfp_text: str) -> list:
     try:
         prompt = f"""
-You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to extract several distinct paragraphs, each describing **one specific role** required by the project.
+You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to write multiple paragraphs, each describing a **distinct and clearly named role** required by the project.
 
 Each paragraph must:
-- Begin with the role name in bold (e.g., **Frontend Developer**, **QA Engineer**) embedded naturally in the **first sentence**.
-- Be written as a single, clear paragraph in **plain text**, with no bullet points or line breaks.
-- Include detailed, **specific tasks**, **responsibilities**, **required skills**, and **preferred experience**.
-- Avoid vague phrases like "good communication" unless directly tied to specific job duties.
-- Cover as many distinct roles as needed to represent all major responsibilities in the RFP — do **not merge unrelated duties into one role**.
+- Begin with the **role name*, written directly into the **first sentence** (e.g., "The **Project Manager** will be responsible for...").
+- Be written as a **single continuous paragraph** — absolutely **no line breaks**, bullet points, markdown formatting outside of the role name, or separate titles before the paragraph.
+- Describe specific **tasks**, **responsibilities**, **required skills**, and **preferred experience** related to that role.
+- Never generalize or combine responsibilities across unrelated roles — instead, write more roles to cover the full scope.
+- Avoid headings, summaries, lists, or transitions outside of the paragraph content itself.
 
-Only output a sequence of role-labeled paragraphs as described above — no lists, titles, summaries, or explanations outside of the paragraphs themselves.
+Do not add any spacing or formatting between paragraphs beyond a single space. The output must be plain text with all role names naturally embedded into their own single paragraph.
 
 RFP TEXT:
 {rfp_text}
@@ -28,7 +28,7 @@ RFP TEXT:
         response = co.generate(
             model="command-r-plus",
             prompt=prompt,
-            max_tokens=800,
+            max_tokens=1000,
             temperature=0.3
         )
 
