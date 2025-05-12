@@ -4,11 +4,12 @@ from generate_profile_summaries import generate_user_summary
 from generate_roles_from_rfp import generate_roles_from_rfp
 from fastapi.middleware.cors import CORSMiddleware
 
+
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Domain 
+    allow_origins=["https://the-bytles-reto.vercel.app/"], # Domain del host
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
