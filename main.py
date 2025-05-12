@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://the-bytles-reto.vercel.app/"], # Domain del host
+    allow_origins=["https://the-bytles-reto.vercel.app"], # Domain del host
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

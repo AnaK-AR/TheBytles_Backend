@@ -10,16 +10,16 @@ co = cohere.Client(COHERE_API_KEY)
 def extract_roles(rfp_text: str) -> list:
     try:
         prompt = f"""
-You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to extract multiple distinct paragraphs, each describing one role *required* by the project — but **without ever naming roles or using any labels, headers, or introductions**.
+You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to extract several distinct paragraphs, each describing **one specific role** required by the project.
 
 Each paragraph must:
-- Be written in plain text.
-- Focus only on required **skills**, **responsibilities**, and **preferred experience**.
-- Not include any role names like “frontend developer”, “UI/UX designer”, “DevSecOps”, “project manager”, etc.
-- Not include section labels or transitions like “Frontend Development:”, “We seek...”, “Finally...”, “The project calls for...”, etc.
-- Be a **standalone summary** ready to be embedded for comparison with candidate profiles.
+- Begin with the role name in bold (e.g., **Frontend Developer**, **QA Engineer**) embedded naturally in the **first sentence**.
+- Be written as a single, clear paragraph in **plain text**, with no bullet points or line breaks.
+- Include detailed, **specific tasks**, **responsibilities**, **required skills**, and **preferred experience**.
+- Avoid vague phrases like "good communication" unless directly tied to specific job duties.
+- Cover as many distinct roles as needed to represent all major responsibilities in the RFP — do **not merge unrelated duties into one role**.
 
-Your output must be only plain paragraphs. Do not include bullet points, headings, summaries or introductions to the content such as "Here are the distinct paragraphs describing the roles required for the project, extracted from the provided RFP:".
+Only output a sequence of role-labeled paragraphs as described above — no lists, titles, summaries, or explanations outside of the paragraphs themselves.
 
 RFP TEXT:
 {rfp_text}
