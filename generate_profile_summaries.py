@@ -36,7 +36,7 @@ def generate_user_summary(user_id):
 
         user = supabase.table("User").select("*").eq("userId", user_id).single().execute().data
         print("Got user:", user)
-
+        
         if not user or not user.get("cv_url"):
             print("Missing user or cv_url")
             return False
@@ -48,13 +48,15 @@ def generate_user_summary(user_id):
         capability = user.get("capability", "")
         trimmed_cv = trim_to_token_limit(pdf_text)
 
-        summary = summarize_user(bio, capability, trimmed_cv)
+        user_skills = supabase.table("User_Skills").select("*, Skills(SkillName)").eq('userid', user_id).execute().data
+
+        summary = summarize_user(bio, capability, trimmed_cv, user_skills)
         print("AI Summary:\n", summary)
         embedding = generate_embedding(summary)
         supabase.table("User").update({
             "ai_summary": summary,
             "summary_generated_at": datetime.utcnow().isoformat(),
-            "embedding": embedding
+            "embedding": embedding,
         }).eq("userId", user_id).execute()
 
         print("Summary saved for user")
