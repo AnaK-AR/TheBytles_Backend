@@ -53,7 +53,7 @@ def generate_user_summary(user_id):
 
         summary = summarize_user(bio, capability, trimmed_cv, skill_names)
         print("AI Summary:\n", summary)
-        embedding = generate_embedding(summary)
+        embedding = generate_embedding(summary, input_type="search_query")
         supabase.table("User").update({
             "ai_summary": summary,
             "summary_generated_at": datetime.utcnow().isoformat(),

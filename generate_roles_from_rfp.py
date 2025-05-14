@@ -45,7 +45,7 @@ def generate_roles_from_rfp(project_id):
         roles = extract_roles(rfp_text)
 
         for role_text in roles:
-            embedding = generate_embedding(role_text)
+            embedding = generate_embedding(role_text, input_type="search_document")
             print(f"Generated Role:\n{role_text}\n")
 
             supabase.table("Role").insert({
