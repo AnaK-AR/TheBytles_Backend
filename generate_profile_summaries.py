@@ -48,9 +48,10 @@ def generate_user_summary(user_id):
         trimmed_cv = trim_to_token_limit(pdf_text)
 
         user_skills = supabase.table("User_Skills").select("*, Skills(SkillName)").eq('userid', user_id).execute().data
-        print("Skills:", user_skills)
+        skill_names = [row["Skills"]["SkillName"] for row in user_skills]
+        print("Skills:", skill_names)
 
-        summary = summarize_user(bio, capability, trimmed_cv, user_skills)
+        summary = summarize_user(bio, capability, trimmed_cv, skill_names)
         print("AI Summary:\n", summary)
         embedding = generate_embedding(summary)
         supabase.table("User").update({

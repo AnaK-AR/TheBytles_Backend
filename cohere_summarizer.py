@@ -7,7 +7,7 @@ load_dotenv()
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 co = cohere.Client(COHERE_API_KEY)
 
-def summarize_user(bio: str, capability: str, cv_text: str, user_skills:str) -> str:
+def summarize_user(bio: str, capability: str, cv_text: str, skill_names:str) -> str:
     try:
         prompt = f"""
 You are an AI assistant summarizing a candidate’s professional profile. Your task is to write a **single, self-contained paragraph** that clearly describes the candidate’s technical skills, relevant experience, and professional strengths.
@@ -30,7 +30,7 @@ CV TEXT:
 {cv_text}
 
 SKILLS:
-{user_skills}
+{skill_names}
 """
 
         response = co.generate(
