@@ -9,8 +9,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    #allow_origins=["https://the-bytles-reto.vercel.app"],
-    allow_origins=["https://the-bytles-reto-git-asignacion-roles-renemacias345s-projects.vercel.app"],
+    allow_origins=["https://the-bytles-reto.vercel.app"],
+    # allow_origins=["https://the-bytles-reto-git-asignacion-roles-renemacias345s-projects.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
