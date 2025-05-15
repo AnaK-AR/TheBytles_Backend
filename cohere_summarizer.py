@@ -39,6 +39,9 @@ SKILLS:
         
         SKILLS: 
         {skill_weighted}
+        SKILLS: 
+        {skill_weighted}
+        
         
         CV TEXT: 
         {cv_text}
@@ -49,15 +52,11 @@ SKILLS:
         CAPABILITY: 
         {capability}
         
-        Reformat the above into exactly this three‐line template, with:
-        1. No blank lines between sections.
-        2. No bullet points.
-        3. Projects listed as individual sentences separated by semicolons.
+        Reformat the above into exactly **one single line** with these **three** fields, separated by middle-dots (` · `), no real newlines or blank lines, and no bullets:
 
-        Template:
-        About: [one paragraph summarizing the candidate] · Skills: [comma-separated list of skills. include absolutely all of them that are mentioned.] · Projects: [Description of proyect1; Description of proyect2; Description of proyect3...]
+        About: [one-paragraph candidate overview] · Responsibilities: [key past responsibilities and projects] · Skills: [comma-separated list of each and every single skill that shows up; do not dedupe, even if repeated]
 
-        Output only those three fields in the same line, nothing else.
+        Output exactly that one line—nothing else.
         """
 
         response = co.generate(
