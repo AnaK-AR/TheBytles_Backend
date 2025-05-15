@@ -48,11 +48,11 @@ SKILLS:
         CAPABILITY: 
         {capability}
         
-        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections:
+        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections. Include absolutely everything that applies. Do **not** include University/school/academy/corporation/institution names:
 
-        About: …<br/>
-        Skills: …<br/>
-        Projects: …<br/>
+        About:
+        Skills:
+        Projects:
 
         """
 
