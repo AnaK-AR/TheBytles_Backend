@@ -55,9 +55,9 @@ SKILLS:
         3. Projects listed as individual sentences separated by semicolons.
 
         Template:
-        About: [one paragraph summarizing the candidate]\\nSkills: [comma-separated list of skills. include absolutely all of them that are mentioned.]\\nProjects: [Description of proyect1; Description of proyect2; Description of proyect3...]
+        About: [one paragraph summarizing the candidate] · Skills: [comma-separated list of skills. include absolutely all of them that are mentioned.] · Projects: [Description of proyect1; Description of proyect2; Description of proyect3...]
 
-        Output only those three fields, nothing else.
+        Output only those three fields in the same line, nothing else.
         """
 
         response = co.generate(
