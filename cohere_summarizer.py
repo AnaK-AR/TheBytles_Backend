@@ -36,11 +36,12 @@ SKILLS:
 '''
         prompt = f"""
         Candidate summary:
-        CV TEXT: 
-        {cv_text}
         
         SKILLS: 
         {skill_names, skill_names, skill_names, skill_names}
+        
+        CV TEXT: 
+        {cv_text}
         
         BIO: 
         {bio}
