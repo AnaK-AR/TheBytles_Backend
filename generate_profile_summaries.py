@@ -47,8 +47,10 @@ def generate_user_summary(user_id):
 
         user_skills = supabase.table("User_Skills").select("*, Skills(SkillName)").eq('userid', user_id).execute().data
         skill_names = [row["Skills"]["SkillName"] for row in user_skills]
+        
+        skill_weighted = [skill_names, skill_names]
 
-        summary = summarize_user(bio, capability, trimmed_cv, skill_names)
+        summary = summarize_user(bio, capability, trimmed_cv, skill_weighted)
         print("AI Summary:\n", summary)
         embedding = generate_embedding(summary, input_type="search_query")
         supabase.table("User").update({

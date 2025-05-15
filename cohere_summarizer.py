@@ -7,7 +7,7 @@ load_dotenv()
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 co = cohere.Client(COHERE_API_KEY)
 
-def summarize_user(bio: str, capability: str, cv_text: str, skill_names:str) -> str:
+def summarize_user(bio: str, capability: str, cv_text: str, skill_weighted:str) -> str:
     try:
         '''
         prompt = f"""
@@ -38,7 +38,7 @@ SKILLS:
         Candidate summary:
         
         SKILLS: 
-        {skill_names, skill_names, skill_names, skill_names}
+        {skill_weighted}
         
         CV TEXT: 
         {cv_text}
