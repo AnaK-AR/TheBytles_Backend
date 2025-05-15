@@ -50,8 +50,9 @@ SKILLS:
         CAPABILITY: 
         {capability}
         
-        Reformat the above into exactly **one single line** with these **three** fields, separated by middle-dots (` · `), no real newlines or blank lines, and no bullets:
+        Reformat the above into exactly **one single line** with these **three** fields, separated by middle-dots (` · `), no real newlines or blank lines, and no bullets.
 
+        Follow the follow template:
         Responsibilities: [key responsibilities in jobs and projects. Describe in present tense] · Skills: [comma-separated list of each and every single skill that shows up; do not dedupe, even if repeated]
 
         Output exactly that one line—nothing else.
