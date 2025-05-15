@@ -40,7 +40,7 @@ SKILLS:
         {cv_text}
         
         SKILLS: 
-        {skill_names}
+        {skill_names, skill_names}
         
         BIO: 
         {bio}
