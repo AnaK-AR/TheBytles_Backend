@@ -35,26 +35,18 @@ SKILLS:
 """
 '''
         prompt = f"""
-        Candidate summary:
-        
-        SKILLS: 
-        {skill_weighted}
-        
-        CV TEXT: 
-        {cv_text}
-        
-        BIO: 
-        {bio}
-        
-        CAPABILITY: 
-        {capability}
-        
-        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections. Include absolutely everything that applies. Do **not** include University/school/academy/corporation/institution/project names. **CRUCIAL: For projects, make a paragraph describing it in one, two, or three sentences; per proyect**:
+        Candidate data:
+        SKILLS: {skill_weighted}
+        SKILLS: {skill_weighted}
+        CV TEXT: {cv_text}
+        BIO: {bio}
+        CAPABILITY: {capability}
 
-        About:
-        Skills:
-        Projects:
+        Reformat this into exactly the following, with no blank lines and no extra sections or instructions. For “Projects:”, list each project as a single-sentence phrase separated by semicolons:
 
+        About:  
+        Skills:  
+        Projects:  
         """
 
         response = co.generate(
