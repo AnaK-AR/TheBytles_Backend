@@ -49,7 +49,7 @@ SKILLS:
         CAPABILITY: 
         {capability}
         
-        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections. Include absolutely everything that applies. Do **not** include University/school/academy/corporation/institution/project names. For projects, make a paragraph describing it in one, two, or three sentences; per proyect :
+        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections. Include absolutely everything that applies. Do **not** include University/school/academy/corporation/institution/project names. **CRUCIAL: For projects, make a paragraph describing it in one, two, or three sentences; per proyect**:
 
         About:
         Skills:
