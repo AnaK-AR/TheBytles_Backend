@@ -35,18 +35,31 @@ SKILLS:
 """
 '''
         prompt = f"""
-        Candidate data:
-        SKILLS: {skill_weighted}
-        SKILLS: {skill_weighted}
-        CV TEXT: {cv_text}
-        BIO: {bio}
-        CAPABILITY: {capability}
+        Candidate summary:
+        
+        SKILLS: 
+        {skill_weighted}
+        
+        CV TEXT: 
+        {cv_text}
+        
+        BIO: 
+        {bio}
+        
+        CAPABILITY: 
+        {capability}
+        
+        Reformat the above into exactly this three‐line template, with:
+        1. No blank lines between sections.
+        2. No bullet points.
+        3. Projects listed as individual sentences separated by semicolons.
 
-        Reformat this into exactly the following, with no blank lines and no extra sections or instructions. For “Projects:”, list each project as a single-sentence phrase separated by semicolons:
+        Template:
+        About: [one paragraph summarizing the candidate]
+        Skills: [comma-separated list of skills. include absolutely all of them that are mentioned.]
+        Projects: [Description of proyect1; Description of proyect2; Description of proyect3...]
 
-        About:  
-        Skills:  
-        Projects:  
+        Output only those three fields, nothing else.
         """
 
         response = co.generate(
