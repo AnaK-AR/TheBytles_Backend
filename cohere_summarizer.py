@@ -52,7 +52,7 @@ SKILLS:
         
         Reformat the above into exactly **one single line** with these **three** fields, separated by middle-dots (` · `), no real newlines or blank lines, and no bullets:
 
-        About: [one-paragraph candidate overview] · Responsibilities: [key past responsibilities and projects] · Skills: [comma-separated list of each and every single skill that shows up; do not dedupe, even if repeated]
+        Responsibilities: [key responsibilities in jobs and projects] · Skills: [comma-separated list of each and every single skill that shows up; do not dedupe, even if repeated]
 
         Output exactly that one line—nothing else.
         """
