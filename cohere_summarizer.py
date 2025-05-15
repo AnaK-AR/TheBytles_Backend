@@ -35,12 +35,6 @@ SKILLS:
 """
 '''
         prompt = f"""
-        Please reformat the following candidate summary into exactly the following template, with no extra commentary or sections:
-
-        Bio: …<br/>
-        Skills: …<br/>
-        Projects: …<br/>
-
         Candidate summary:
         CV TEXT: 
         {cv_text}
@@ -53,6 +47,13 @@ SKILLS:
         
         CAPABILITY: 
         {capability}
+        
+        Based on the information shown, please reformat the following candidate summary into exactly the following template, with no extra commentary or sections:
+
+        About: …<br/>
+        Skills: …<br/>
+        Projects: …<br/>
+
         """
 
         response = co.generate(
