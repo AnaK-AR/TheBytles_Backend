@@ -9,6 +9,7 @@ co = cohere.Client(COHERE_API_KEY)
 
 def summarize_user(bio: str, capability: str, cv_text: str, skill_names:str) -> str:
     try:
+        '''
         prompt = f"""
 You are an AI assistant summarizing a candidate’s professional profile. Your task is to write a **single, self-contained paragraph** that clearly describes the candidate’s technical skills, relevant experience, and professional strengths.
 
@@ -32,6 +33,27 @@ CV TEXT:
 SKILLS:
 {skill_names}
 """
+'''
+        prompt = f"""
+        Please reformat the following candidate summary into exactly the following template, with no extra commentary or sections:
+
+        Bio: …<br/>
+        Skills: …<br/>
+        Projects: …<br/>
+
+        Candidate summary:
+        CV TEXT: 
+        {cv_text}
+        
+        SKILLS: 
+        {skill_names}
+        
+        BIO: 
+        {bio}
+        
+        CAPABILITY: 
+        {capability}
+        """
 
         response = co.generate(
             model="command-r-plus",

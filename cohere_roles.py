@@ -9,7 +9,8 @@ co = cohere.Client(COHERE_API_KEY)
 
 def extract_roles(rfp_text: str) -> list:
     try:
-        prompt = f"""
+        '''
+                prompt = f"""
 You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to write multiple paragraphs, each describing a **distinct and clearly named role** required by the project.
 
 Each paragraph must:
@@ -24,6 +25,20 @@ Do not add any spacing or formatting between paragraphs beyond a single space. T
 RFP TEXT:
 {rfp_text}
 """
+        '''
+        prompt = f"""
+        You are analyzing an RFP (Request for Proposal). Your task is to write multiple paragraphs, each describing a **distinct and clearly named role** required by the project.
+        Please reformat the each job description into exactly with the following template, with no extra commentary or sections:
+
+        Role: …<br/>
+        Responsibilities: …<br/>
+        Skills: …<br/>
+        Context: …<br/>
+
+        RFP TEXT:
+        {rfp_text}
+        """
+
 
         response = co.generate(
             model="command-r-plus",
