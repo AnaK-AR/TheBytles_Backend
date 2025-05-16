@@ -35,13 +35,11 @@ def generate_user_summary(user_id):
         print(f"\nStarting summary for {user_id}")
 
         user = supabase.table("User").select("*").eq("userId", user_id).single().execute().data
-        print("Got user:", user)
         if not user or not user.get("cv_url"):
             print("Missing user or cv_url")
             return False
 
         pdf_text = download_and_extract_text(user["cv_url"])
-        print("Extracted PDF text")
 
         bio = user.get("bio", "")
         capability = user.get("capability", "")
@@ -49,7 +47,7 @@ def generate_user_summary(user_id):
 
         user_skills = supabase.table("User_Skills").select("*, Skills(SkillName)").eq('userid', user_id).execute().data
         skill_names = [row["Skills"]["SkillName"] for row in user_skills]
-        print("Skills:", skill_names)
+        
 
         summary = summarize_user(bio, capability, trimmed_cv, skill_names)
         print("AI Summary:\n", summary)
