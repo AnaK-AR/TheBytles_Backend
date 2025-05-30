@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/anakaramoni/Documents/GitHub/TheBytles_Reto/TheBytles_Reto/ai_api_backend/venv"
+set -gx VIRTUAL_ENV "/Users/anakaramoni/Documents/GitHub/TheBytles_Backend/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

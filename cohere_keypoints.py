@@ -10,28 +10,37 @@ co = cohere.Client(COHERE_API_KEY)
 def keypoint_generation(actual_skills: str, user_goals: str) -> list:
     try:
         prompt = f"""
-        The user with the following skills:
-        {actual_skills}
-        
-        Aspires to reach the following goals: 
-        {user_goals}
-        
-Based on the following background and skills, provide a clear and specific list of task-based, habit-forming recommendations to accelerate the user’s professional growth. 
-Each item should be a complete sentence focused on a specific action, project, or habit that supports career advancement. Do not use bullet points or numbers. 
-Return the output as a list of sentences, without any introductory or summary text.
-        """
+The user with the following skills:
+{actual_skills}
+
+Aspires to reach the following goals:
+{user_goals}
+
+You are an expert career coach. Based on the user's skills and goals, generate four personalized micro-growth tasks. 
+Half must be focused on soft skills, and half must be focused on technical skills, where each item must:
+– Be a standalone sentence under 25 words.
+– Read like a habit or project someone can begin immediately.
+– Be actionable and task-based.
+– Avoid generic advice (such as “build your brand” or “expand your network.”).
+- ****Avoid at all costs introductions, conclusions, or transitions.****
+– Be formatted as a plain list of sentences (no bullets, no numbering, no headings).
+– The output must consist of **exactly four separate lines**, each with one task, and nothing else.
+    """
 
         response = co.generate(
             model="command-r-plus",
             prompt=prompt,
-            max_tokens=1000,
+            max_tokens=300,
             temperature=0.3
         )
 
-        result = response.generations[0].text.strip()
-        keypoints = [p.strip() for p in result.split('\n') if p.strip()]
+        keypoints = [kp.strip() for kp in response.generations[0].text.strip().splitlines() if kp.strip()]
+        
         return keypoints
 
+        return keypoints
+
+    
     except Exception as e:
-        print(f"Cohere keypoibts generation error: {e}")
+        print(f"Cohere keypoints generation error: {e}")
         return ["[Error generating keypoints for user.]"]

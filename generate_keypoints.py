@@ -24,12 +24,18 @@ def generate_keypoints(user_id):
         
 
         keypoints = keypoint_generation(actual_skills, user_goals)
-        print("Keypoints generated:\n", keypoints)
-        supabase.table("Grow").insert({
-            "Recomendation": keypoints,
-            "Generated":  datetime.now().isoformat(),
-            "user_grow_id": user_id,
-        }).execute()
+        
+        if isinstance(keypoints, str):
+            keypoints = keypoints.strip().splitlines()
+    
+        for keypoint in keypoints:
+            print("Inserting keypoint:", keypoint)
+
+            supabase.table("Grow").insert({
+                "user_grow_id": user_id,
+                "Recomendation": keypoint,
+                "Generated": datetime.now().isoformat(),
+            }).execute()
 
         print("Keypoints saved for user")
         return True

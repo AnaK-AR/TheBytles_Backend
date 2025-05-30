@@ -1,4 +1,4 @@
-#!/Users/anakaramoni/Documents/GitHub/TheBytles_Reto/TheBytles_Reto/ai_api_backend/venv/bin/python3.12
+#!/Users/anakaramoni/Documents/GitHub/TheBytles_Backend/venv/bin/python3.12
 '''
 The MIT License (MIT)
 

@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from generate_profile_summaries import generate_user_summary
 from generate_roles_from_rfp import generate_roles_from_rfp
+from generate_keypoints import generate_keypoints
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -27,6 +28,15 @@ class SummaryRequest(BaseModel):
 async def generate_summary(payload: SummaryRequest):
     user_id = payload.user_id
     success = generate_user_summary(user_id)
+    return {"status": "success" if success else "error"}
+
+class KeypointsRequest(BaseModel):
+    user_id: str
+
+@app.post("/generate-keypoints")
+async def keypoints_request(payload: KeypointsRequest):
+    user_id = payload.user_id
+    success = generate_keypoints(user_id)
     return {"status": "success" if success else "error"}
  
 class RoleGenRequest(BaseModel):
