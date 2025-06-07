@@ -7,6 +7,7 @@ load_dotenv()
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 co = cohere.Client(COHERE_API_KEY)
 
+# Generacion de embedding semantico
 def generate_embedding(text: str, input_type: str = "search_document") -> list:
     try:
         response = co.embed(

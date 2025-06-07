@@ -14,6 +14,7 @@ co = cohere.Client(COHERE_API_KEY)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+# Generacion de embeddings con Cohere
 def generate_embedding(text: str, input_type: str = "search_document") -> list:
     try:
         response = co.embed(
@@ -26,6 +27,7 @@ def generate_embedding(text: str, input_type: str = "search_document") -> list:
         print(f"Embedding generation error: {e}")
         return []
 
+# Obtener cursos sin embedding de la tabla Course_Recomendation
 def fetch_missing_embeddings():
     response = supabase.table("Course_Recomendation") \
         .select("id_course_recomendation, Course_Des") \
@@ -34,6 +36,7 @@ def fetch_missing_embeddings():
     
     return response.data if response.data else []
 
+# Actualizar el campo de embedding en la tabla Course_Recomendation
 def update_embedding(id_course_recomendation: str, embedding: list[float]):
     response = supabase.table("Course_Recomendation") \
         .update({"course_embedding": embedding}) \
@@ -42,7 +45,7 @@ def update_embedding(id_course_recomendation: str, embedding: list[float]):
     
     return response
 
-# ---  LOOP ---
+# Bucle principal
 courses = fetch_missing_embeddings()
 
 print(f"Found {len(courses)} courses missing embeddings.")

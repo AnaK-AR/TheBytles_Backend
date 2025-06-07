@@ -26,7 +26,7 @@ Half must be focused on soft skills, and half must be focused on technical skill
 – Be formatted as a plain list of sentences (no bullets, no numbering, no headings).
 – The output must consist of **exactly four separate lines**, each with one task, and nothing else.
     """
-
+        # Generacion del texto con Cohere
         response = co.generate(
             model="command-r-plus",
             prompt=prompt,
@@ -34,12 +34,10 @@ Half must be focused on soft skills, and half must be focused on technical skill
             temperature=0.3
         )
 
+        # Limpieza y separacion de lineas validas
         keypoints = [kp.strip() for kp in response.generations[0].text.strip().splitlines() if kp.strip()]
         
         return keypoints
-
-        return keypoints
-
     
     except Exception as e:
         print(f"Cohere keypoints generation error: {e}")

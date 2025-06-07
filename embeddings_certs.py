@@ -14,6 +14,7 @@ co = cohere.Client(COHERE_API_KEY)
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+# Funcion para generar embedding vector con Cohere
 def generate_embedding(text: str, input_type: str = "search_document") -> list:
     try:
         response = co.embed(
@@ -26,6 +27,7 @@ def generate_embedding(text: str, input_type: str = "search_document") -> list:
         print(f"Embedding generation error: {e}")
         return []
 
+# Recuperar certificaciones sin embedding
 def fetch_missing_embeddings():
     response = supabase.table("Cert_Recomendation") \
         .select("id_recomendation, Cert_Des") \
@@ -34,6 +36,7 @@ def fetch_missing_embeddings():
     
     return response.data if response.data else []
 
+#  Actualizar embedding para una certificacion
 def update_embedding(id_recomendation: str, embedding: list[float]):
     response = supabase.table("Cert_Recomendations") \
         .update({"cert_embedding": embedding}) \
@@ -42,7 +45,7 @@ def update_embedding(id_recomendation: str, embedding: list[float]):
     
     return response
 
-# ---  LOOP ---
+# Loop principal para procesamiento
 certs = fetch_missing_embeddings()
 
 print(f"Found {len(certs)} certs missing embeddings.")

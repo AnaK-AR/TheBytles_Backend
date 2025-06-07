@@ -11,16 +11,17 @@ from cohere_embed import generate_embedding
 
 load_dotenv()
 
-# Supabase setup
 supabase = create_client(os.getenv("VITE_SUPABASE_URL"), os.getenv("VITE_SUPABASE_ANON_KEY"))
 
-# Tokenizer for trimming
+# Tokenizador para truncado
 tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
 
 def trim_to_token_limit(text, max_tokens=1024):
     tokens = tokenizer.encode(text, truncation=True, max_length=max_tokens)
     return tokenizer.decode(tokens)
 
+
+# Descargue y extraccion del texto desde el PDF del RFP
 def download_and_extract_text(cv_url):
     response = requests.get(cv_url)
     response.raise_for_status()
@@ -29,9 +30,11 @@ def download_and_extract_text(cv_url):
         text = "\n".join([page.get_text() for page in doc])
     return text
 
+# Generacion de roles desde el archibo
 def generate_roles_from_rfp(project_id):
     try:
-        # Fetch RFP URL from Supabase Project table
+        
+        # URL del RFP desde Supabase
         project = supabase.table("Project").select("rfp_url").eq("Project_ID", project_id).single().execute().data
         if not project or not project.get("rfp_url"):
             print("No RFP URL found for this project.")
@@ -39,11 +42,15 @@ def generate_roles_from_rfp(project_id):
 
         rfp_url = project["rfp_url"]
         print(f"Downloading RFP from: {rfp_url}")
+        
+
         rfp_text = download_and_extract_text(rfp_url)
 
         print("Generating roles from RFP...")
         roles = extract_roles(rfp_text)
 
+
+        # Insertar cada rol en la tabla Role con su embedding
         for role_text in roles:
             embedding = generate_embedding(role_text, input_type="search_document")
             print(f"Generated Role:\n{role_text}\n")

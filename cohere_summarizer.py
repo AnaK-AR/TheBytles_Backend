@@ -33,6 +33,7 @@ def summarize_user(bio: str, capability: str, cv_text: str, skill_names:str) -> 
         Output exactly that one line—nothing else.
         """
 
+         # Generacion del texto con Cohere
         response = co.generate(
             model="command-r-plus",
             prompt=prompt,
@@ -40,7 +41,9 @@ def summarize_user(bio: str, capability: str, cv_text: str, skill_names:str) -> 
             temperature=0.0
         )
 
+        # Limpieza y separacion de lineas validas
         summary = response.generations[0].text.strip()
+        
         return summary
 
     except Exception as e:

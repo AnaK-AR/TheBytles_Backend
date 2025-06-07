@@ -9,23 +9,6 @@ co = cohere.Client(COHERE_API_KEY)
 
 def extract_roles(rfp_text: str) -> list:
     try:
-        '''
-                prompt = f"""
-You are an AI assistant analyzing an RFP (Request for Proposal). Your task is to write multiple paragraphs, each describing a **distinct and clearly named role** required by the project.
-
-Each paragraph must:
-- Begin with the **role name*, written directly into the **first sentence** (e.g., "The **Project Manager** will be responsible for...").
-- Be written as a **single continuous paragraph** — absolutely **no line breaks**, bullet points, markdown formatting outside of the role name, or separate titles before the paragraph.
-- Describe specific **tasks**, **responsibilities**, **required skills**, and **preferred experience** related to that role.
-- Never generalize or combine responsibilities across unrelated roles — instead, write more roles to cover the full scope.
-- Avoid headings, summaries, lists, or transitions outside of the paragraph content itself.
-
-Do not add any spacing or formatting between paragraphs beyond a single space. The output must be plain text with all role names naturally embedded into their own single paragraph.
-
-RFP TEXT:
-{rfp_text}
-"""
-        '''
         prompt = f"""
         RFP (Request for Proposal) TEXT:
         {rfp_text}
